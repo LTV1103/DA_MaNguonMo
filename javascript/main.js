@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const productId = this.getAttribute("data-id"); // Lấy ID sản phẩm
             const input = document.querySelector(`.quantity-input[data-id="${productId}"]`);
             let quantity = parseInt(input.value);
-
-            if (quantity > 1) {
+            //1
+            if (quantity > 0 ) {
                 quantity--; // Giảm số lượng
                 input.value = quantity;
                 capNhatGioHang(productId, quantity); // Gửi yêu cầu cập nhật giỏ hàng

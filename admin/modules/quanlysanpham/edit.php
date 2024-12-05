@@ -62,7 +62,7 @@ if (isset($_POST['sbm'])) {
             </div>
             <div class="form-group mb-3">
                 <label for="">Giá Tiền</label>
-                <input type="number" name="price" class="form-control" required value="<?php echo $row_upload['price']; ?>">
+                <input type="number" name="price" class="form-control"  value="<?php echo $row_upload['price']; ?>">
             </div>
             <div class="form-group mb-3">
                 <label for="">Số Lượng</label>

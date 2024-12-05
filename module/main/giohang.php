@@ -1,3 +1,4 @@
+<?php
 session_start();
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
@@ -23,6 +24,23 @@ if (isset($_GET['idxoasp'])) {
 
 $cart = $_SESSION['cart'];
 
+// Xử lý xóa sản phẩm khỏi giỏ hàng
+// if (isset($_GET['idxoasp'])) {
+//     $id = $_GET['idxoasp'];
+
+//     // Loại bỏ sản phẩm khỏi giỏ hàng
+//     foreach ($_SESSION['cart'] as $key => $item) {
+//         if ($item['id'] == $id) {
+//             unset($_SESSION['cart'][$key]);
+//         }
+//     }
+
+//     $_SESSION['cart'] = array_values($_SESSION['cart']);
+//     header("Location: ../../index.php?quanly=giohang");
+//     exit();
+// }
+
+// $cart = $_SESSION['cart'];
 // Tính tổng tiền
 $totalPrice = 0;
 foreach ($cart as $item) {

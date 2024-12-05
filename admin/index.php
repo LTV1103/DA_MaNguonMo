@@ -1,19 +1,19 @@
 <?php
 session_start();
-if (!isset($_SESSION['login'])) {
-    header('Location:login.php');
-}
+// if (!isset($_SESSION['login'])) {
+//     header('Location:login.php');
+// }
 
-$timeout = 900; // 15 phút
+// $timeout = 900; // 15 phút
 
-// Kiểm tra thời gian hoạt động cuối cùng
-if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout)) {
-    // Nếu thời gian không hoạt động vượt quá 15 phút, huỷ phiên đăng nhập
-    session_unset();
-    session_destroy();
-    header("Location: login.php");
-    exit();
-}
+// // Kiểm tra thời gian hoạt động cuối cùng
+// if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout)) {
+//     // Nếu thời gian không hoạt động vượt quá 15 phút, huỷ phiên đăng nhập
+//     session_unset();
+//     session_destroy();
+//     header("Location: login.php");
+//     exit();
+// }
 // Cập nhật thời gian hoạt động cuối cùng
 $_SESSION['last_activity'] = time();
 ?>

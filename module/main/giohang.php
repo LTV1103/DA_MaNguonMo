@@ -1,4 +1,3 @@
-<?php
 session_start();
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
@@ -8,10 +7,11 @@ if (!isset($_SESSION['cart'])) {
 if (isset($_GET['idxoasp'])) {
     $id = $_GET['idxoasp'];
 
-    // Loại bỏ sản phẩm khỏi giỏ hàng
+    // Giảm số lượng sản phẩm mà không kiểm tra nếu số lượng giảm xuống 0
     foreach ($_SESSION['cart'] as $key => $item) {
         if ($item['id'] == $id) {
-            unset($_SESSION['cart'][$key]);
+            $item['soluong']--; // Giảm số lượng xuống 1
+            $_SESSION['cart'][$key] = $item; // Cập nhật giỏ hàng
         }
     }
 
@@ -34,13 +34,11 @@ foreach ($cart as $item) {
     <h2>GIỎ HÀNG CỦA BẠN</h2>
     <div class="cart-info">
         <?php if (empty($cart)): ?>
-            <!-- Thông báo giỏ hàng rỗng -->
             <div class="empty-cart-message">
                 <p>Giỏ hàng của bạn đang trống. Hãy tiếp tục mua sắm!</p>
                 <a href="index.php" class="continue-shopping">TIẾP TỤC MUA HÀNG</a>
             </div>
         <?php else: ?>
-            <!-- Chi tiết giỏ hàng -->
             <div class="cart-details">
                 <p>Bạn đang có <span id="product-count"><?php echo count($cart); ?></span> sản phẩm trong giỏ hàng</p>
 
@@ -61,7 +59,6 @@ foreach ($cart as $item) {
                 <?php endforeach; ?>
             </div>
 
-            <!-- Thông tin đơn hàng -->
             <div class="order-summary">
                 <h3>Thông tin đơn hàng</h3>
                 <p>Phương Thức Thanh Toán</p>
@@ -83,9 +80,9 @@ foreach ($cart as $item) {
 <script src="/javascript/main.js"></script>
 
 <?php
-// Hiển thị thông báo thành công nếu có
 if (isset($_SESSION['success_message'])) {
     echo "<div class='success-message'>" . $_SESSION['success_message'] . "</div>";
     unset($_SESSION['success_message']);
 }
 ?>
+

@@ -22,15 +22,46 @@ try {
         <form action="/module/main/capnhatgiohang.php?idsp=<?php echo $product['id_product']; ?>" method="post">
             <div class="product-info">
                 <h1 class="product-name"><?php echo htmlspecialchars($product['namepro'], ENT_QUOTES, 'UTF-8'); ?></h1>
-                <p class="product-price"><?php echo number_format($product['price'], 0, ',', '.'); ?>₫</p>
+                <p class="product-price">
+
+
+                <!-- fix bug -->
+                <?php 
+                    if ($product['price'] == 0) {
+                        echo "Liên hệ"; 
+                    } else {
+                        echo number_format($product['price'], 0, ',', '.') . "₫";
+                    }
+                    ?>
+                </p>
+            </div>
+            <?php if ($product['price'] > 0) { ?>
+                <div class="button-group">
+                    <button class="button button-secondary" name="themgiohang">
+                        <i data-lucide="shopping-cart"></i>
+                        Thêm giỏ hàng
+                    </button>
+                </div>
+            <?php } else { ?>
+                <div class="button-group">
+                    <button class="button button-secondary" disabled>
+                        <i data-lucide="shopping-cart"></i>
+                        Liên hệ để mua
+                    </button>
+                </div>
+            <?php } ?>
+
+            <!-- <p class="product-price"><?php echo number_format($product['price'], 0, ',', '.'); ?>₫</p> -->
             </div>
             <!-- <p class="stock-info">Kho: <?php echo htmlspecialchars($product['stock'], ENT_QUOTES, 'UTF-8'); ?></p> -->
-            <div class="button-group">
+            <!-- <div class="button-group">
                 <button class="button button-secondary" name="themgiohang">
                     <i data-lucide="shopping-cart"></i>
                     Thêm giỏ hàng
                 </button>
-            </div>
+            </div> -->
+
+
             <div class="product-description">
                 <h2>Mô tả:</h2>
                 <p><?php echo htmlspecialchars($product['description'], ENT_QUOTES, 'UTF-8'); ?></p>

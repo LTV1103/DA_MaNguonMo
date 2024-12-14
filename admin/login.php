@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 session_start();
 include('config/config.php');
 
@@ -71,4 +71,4 @@ if (isset($_POST['btnLogin'])) {
 
 </body>
 
-</html>
+</html> -->

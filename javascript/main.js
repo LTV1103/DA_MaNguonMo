@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const input = document.querySelector(`.quantity-input[data-id="${productId}"]`);
             let quantity = parseInt(input.value);
             //1
-            if (quantity > 0 ) {
+            if (quantity > 1 ) {
                 quantity--; // Giảm số lượng
                 input.value = quantity;
                 capNhatGioHang(productId, quantity); // Gửi yêu cầu cập nhật giỏ hàng

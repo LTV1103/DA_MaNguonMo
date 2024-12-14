@@ -5,42 +5,42 @@ if (!isset($_SESSION['cart'])) {
 }
 
 // Xử lý xóa sản phẩm khỏi giỏ hàng
-if (isset($_GET['idxoasp'])) {
-    $id = $_GET['idxoasp'];
-
-    // Giảm số lượng sản phẩm mà không kiểm tra nếu số lượng giảm xuống 0
-    foreach ($_SESSION['cart'] as $key => $item) {
-        if ($item['id'] == $id) {
-            $item['soluong']--; // Giảm số lượng xuống 1
-            $_SESSION['cart'][$key] = $item; // Cập nhật giỏ hàng
-        }
-    }
-
-    $_SESSION['cart'] = array_values($_SESSION['cart']); // Re-index lại mảng giỏ hàng
-
-    header("Location: ../../index.php?quanly=giohang");
-    exit();
-}
-
-$cart = $_SESSION['cart'];
-
-// Xử lý xóa sản phẩm khỏi giỏ hàng
 // if (isset($_GET['idxoasp'])) {
 //     $id = $_GET['idxoasp'];
 
-//     // Loại bỏ sản phẩm khỏi giỏ hàng
+//     // Giảm số lượng sản phẩm mà không kiểm tra nếu số lượng giảm xuống 0
 //     foreach ($_SESSION['cart'] as $key => $item) {
 //         if ($item['id'] == $id) {
-//             unset($_SESSION['cart'][$key]);
+//             $item['soluong']--; // Giảm số lượng xuống 1
+//             $_SESSION['cart'][$key] = $item; // Cập nhật giỏ hàng
 //         }
 //     }
 
-//     $_SESSION['cart'] = array_values($_SESSION['cart']);
+//     $_SESSION['cart'] = array_values($_SESSION['cart']); // Re-index lại mảng giỏ hàng
+
 //     header("Location: ../../index.php?quanly=giohang");
 //     exit();
 // }
 
 // $cart = $_SESSION['cart'];
+
+// Xử lý xóa sản phẩm khỏi giỏ hàng
+if (isset($_GET['idxoasp'])) {
+    $id = $_GET['idxoasp'];
+
+    // Loại bỏ sản phẩm khỏi giỏ hàng
+    foreach ($_SESSION['cart'] as $key => $item) {
+        if ($item['id'] == $id) {
+            unset($_SESSION['cart'][$key]);
+        }
+    }
+
+    $_SESSION['cart'] = array_values($_SESSION['cart']);
+    header("Location: ../../index.php?quanly=giohang");
+    exit();
+}
+
+$cart = $_SESSION['cart'];
 // Tính tổng tiền
 $totalPrice = 0;
 foreach ($cart as $item) {
